@@ -5,7 +5,7 @@ const password = urlParams.get('passWord')
 ZoomMtg.preLoadWasm()
 ZoomMtg.prepareWebSDK()
 
-var authEndpoint = 'http://localhost:4000'
+var authEndpoint = 'https://mtt-dev.fabbidev.com/api'
 var meetingNumber = zoomNumber
 var passWord = password
 var role = 0
