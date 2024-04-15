@@ -1,13 +1,17 @@
+const urlParams = new URLSearchParams(window.location.search);
+const zoomNumber = urlParams.get('zoom_number');
+const password = urlParams.get('password')
+
 ZoomMtg.preLoadWasm()
 ZoomMtg.prepareWebSDK()
 
-var authEndpoint = ''
+var authEndpoint = 'http://localhost:4000'
 var sdkKey = ''
-var meetingNumber = '123456789'
-var passWord = ''
+var meetingNumber = zoomNumber
+var passWord = password
 var role = 0
-var userName = 'JavaScript'
-var userEmail = ''
+var userName =  urlParams.get('username') || 'JavaScript'
+var userEmail = urlParams.get('useremail') || ''
 var registrantToken = ''
 var zakToken = ''
 var leaveUrl = 'https://zoom.us'
@@ -54,7 +58,7 @@ function startMeeting(signature) {
           console.log(success)
         },
         error: (error) => {
-          console.log(error)
+          console.log(2, error)
         },
       })
     },
