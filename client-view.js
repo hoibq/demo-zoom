@@ -1,20 +1,19 @@
 const urlParams = new URLSearchParams(window.location.search);
 const zoomNumber = urlParams.get('zoom_number');
-const password = urlParams.get('password')
+const password = urlParams.get('passWord')
 
 ZoomMtg.preLoadWasm()
 ZoomMtg.prepareWebSDK()
 
 var authEndpoint = 'http://localhost:4000'
-var sdkKey = ''
 var meetingNumber = zoomNumber
 var passWord = password
 var role = 0
-var userName =  urlParams.get('username') || 'JavaScript'
+var userName =  urlParams.get('username') || ''
 var userEmail = urlParams.get('useremail') || ''
 var registrantToken = ''
 var zakToken = ''
-var leaveUrl = 'https://zoom.us'
+var leaveUrl = ''
 
 function getSignature() {
   fetch(authEndpoint, {
@@ -39,7 +38,7 @@ function getSignature() {
 function startMeeting(signature) {
 
   document.getElementById('zmmtg-root').style.display = 'block'
-
+  console.log(signature, passWord, meetingNumber)
   ZoomMtg.init({
     leaveUrl: leaveUrl,
     patchJsMedia: true,
@@ -47,18 +46,16 @@ function startMeeting(signature) {
       console.log(success)
       ZoomMtg.join({
         signature: signature,
-        sdkKey: sdkKey,
+        sdkKey: '3DfnAgnXX3U6IwqKBdbYhtYKv1wZ6FN2EAZs',
         meetingNumber: meetingNumber,
         passWord: passWord,
-        userName: userName,
-        userEmail: userEmail,
-        tk: registrantToken,
-        zak: zakToken,
+        userName: userName || "Nhung LH",
+        userEmail: userEmail || "hoibq@gmail.com",
         success: (success) => {
           console.log(success)
         },
         error: (error) => {
-          console.log(2, error)
+          console.log(error)
         },
       })
     },
